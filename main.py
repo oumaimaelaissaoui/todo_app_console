@@ -39,15 +39,6 @@ def show_tasks(tasks):
     for index, task in enumerate(tasks, start=1):
         status = " Terminée" if task["done"] else " Non terminée"
         print(f"{index}. {task['title']} - {status}")
-def show_tasks(tasks):
-    if not tasks:
-        print("📭 Aucune tâche pour le moment.")
-        return
-
-    print("\n📋 Liste des tâches :")
-    for index, task in enumerate(tasks, start=1):
-        status = "✅ Terminée" if task["done"] else "❌ Non terminée"
-        print(f"{index}. {task['title']} - {status}")
 
 
 def complete_task(tasks):
