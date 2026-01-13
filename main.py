@@ -40,7 +40,6 @@ def show_tasks(tasks):
         status = " Terminée" if task["done"] else " Non terminée"
         print(f"{index}. {task['title']} - {status}")
 
-
 def complete_task(tasks):
     show_tasks(tasks)
 
