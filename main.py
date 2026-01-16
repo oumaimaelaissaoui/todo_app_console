@@ -1,3 +1,5 @@
+import json
+import os
 def show_menu():
     print("\n===== TODO APP =====")
     print("1. Ajouter une tâche")
