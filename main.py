@@ -10,19 +10,24 @@ def show_menu():
 
 
 def main():
+    tasks = load_tasks()
     while True:
         show_menu()
         choice = input("Choisissez une option : ")
 
         if choice == "1":
-            print("Fonction add_task à implémenter")
+            add_task(tasks)
+            save_tasks(tasks)
         elif choice == "2":
-            print("Fonction show_tasks à implémenter")
+            show_tasks(tasks)
         elif choice == "3":
-            print("Fonction complete_task à implémenter")
+            complete_task(tasks)
+            save_tasks(tasks)
         elif choice == "4":
-            print("Fonction delete_task à implémenter")
+            delete_task(tasks)
+            save_tasks(tasks)
         elif choice == "5":
+            save_tasks(tasks)
             print("Au revoir 👋")
             break
         else:
