@@ -86,3 +86,7 @@ def delete_task(tasks):
     except ValueError:
         print("Please enter a valid number.")
 
+def save_tasks(tasks, filename="tasks.json"):
+    with open(filename, "w") as file:
+        json.dump(tasks, file, indent=4)
+
