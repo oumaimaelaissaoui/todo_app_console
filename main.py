@@ -8,35 +8,6 @@ def show_menu():
     print("4. Supprimer une tâche")
     print("5. Quitter")
 
-
-def main():
-    tasks = load_tasks()
-    while True:
-        show_menu()
-        choice = input("Choisissez une option : ")
-
-        if choice == "1":
-            add_task(tasks)
-            save_tasks(tasks)
-        elif choice == "2":
-            show_tasks(tasks)
-        elif choice == "3":
-            complete_task(tasks)
-            save_tasks(tasks)
-        elif choice == "4":
-            delete_task(tasks)
-            save_tasks(tasks)
-        elif choice == "5":
-            save_tasks(tasks)
-            print("Au revoir 👋")
-            break
-        else:
-            print("Choix invalide ❌")
-
-
-if __name__ == "__main__":
-    main()
-
 def show_tasks(tasks):
     if not tasks:
         print("Aucune tâche pour le moment.")
@@ -44,7 +15,7 @@ def show_tasks(tasks):
 
     print("\n  Liste des tâches :")
     for index, task in enumerate(tasks, start=1):
-        status = " Terminée" if task["done"] else " Non terminée"
+        status = " Terminée" if task["completed"] else " Non terminée"
         print(f"{index}. {task['title']} - {status}")
 
 def complete_task(tasks):
@@ -56,7 +27,7 @@ def complete_task(tasks):
     try:
         task_number = int(input("\nEntrez le numéro de la tâche à terminer : "))
         if 1 <= task_number <= len(tasks):
-            tasks[task_number - 1]["done"] = True
+            tasks[task_number - 1]["completed"] = True
             print("🎉 Tâche marquée comme terminée !")
         else:
             print("⚠️ Numéro invalide.")
@@ -102,3 +73,30 @@ def load_tasks(filename="tasks.json"):
     except FileNotFoundError:
         return []
 
+def main():
+    tasks = load_tasks()
+    while True:
+        show_menu()
+        choice = input("Choisissez une option : ")
+
+        if choice == "1":
+            add_task(tasks)
+            save_tasks(tasks)
+        elif choice == "2":
+            show_tasks(tasks)
+        elif choice == "3":
+            complete_task(tasks)
+            save_tasks(tasks)
+        elif choice == "4":
+            delete_task(tasks)
+            save_tasks(tasks)
+        elif choice == "5":
+            save_tasks(tasks)
+            print("Au revoir 👋")
+            break
+        else:
+            print("Choix invalide ❌")
+
+
+if __name__ == "__main__":
+    main()
