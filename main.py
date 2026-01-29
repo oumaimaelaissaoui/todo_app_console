@@ -58,3 +58,12 @@ def complete_task(tasks):
     except ValueError:
         print("⚠️ Veuillez entrer un nombre valide.")
 
+def add_task(tasks):
+    title = input("Enter task title: ")
+    task = {
+        "title": title,
+        "completed": False
+    }
+    tasks.append(task)
+    print("Task added successfully!")
+
