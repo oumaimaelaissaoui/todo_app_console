@@ -8,6 +8,67 @@ def show_menu():
     print("4. Supprimer une tâche")
     print("5. Quitter")
 
+# main.py
+
+tasks = []  # liste globale des tâches
+
+
+def add_task():
+    title = input("Entrez le nom de la tâche : ")
+    task = {
+        "title": title,
+        "done": False
+    }
+    tasks.append(task)
+    print("✅ Tâche ajoutée avec succès !")
+
+
+def delete_task():
+    if len(tasks) == 0:
+        print("❌ Aucune tâche à supprimer.")
+        return
+
+    for i, task in enumerate(tasks):
+        print(f"{i + 1}. {task['title']}")
+
+    try:
+        index = int(input("Entrez le numéro de la tâche à supprimer : "))
+        removed_task = tasks.pop(index - 1)
+        print(f"🗑️ Tâche '{removed_task['title']}' supprimée.")
+    except (ValueError, IndexError):
+        print("❌ Numéro invalide.")
+
+
+def show_tasks():
+    if len(tasks) == 0:
+        print("📭 Aucune tâche.")
+    else:
+        for i, task in enumerate(tasks):
+            status = "✔️" if task["done"] else "❌"
+            print(f"{i + 1}. {task['title']} [{status}]")
+
+
+# Menu simple pour tester
+while True:
+    print("\n--- TODO APP ---")
+    print("1. Ajouter une tâche")
+    print("2. Supprimer une tâche")
+    print("3. Afficher les tâches")
+    print("4. Quitter")
+
+    choice = input("Choisissez une option : ")
+
+    if choice == "1":
+        add_task()
+    elif choice == "2":
+        delete_task()
+    elif choice == "3":
+        show_tasks()
+    elif choice == "4":
+        print("👋 Au revoir")
+        break
+    else:
+        print("❌ Choix invalide")
 
 def main():
     while True:
@@ -27,6 +88,8 @@ def main():
             break
         else:
             print("Choix invalide ❌")
+
+
 
 
 if __name__ == "__main__":
