@@ -67,21 +67,11 @@ def save_tasks(tasks, filename="tasks.json"):
         json.dump(tasks, file, indent=4)
 
 def load_tasks(filename="tasks.json"):
-    print("DEBUG: loading tasks.json")
-
-    if not os.path.exists(filename):
-        print("DEBUG: file does not exist")
+    try:
+        with open(filename, "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
         return []
-
-    with open(filename, "r") as file:
-        content = file.read()
-        print("DEBUG content:", repr(content))
-
-        if content.strip() == "":
-            print("DEBUG: empty file detected")
-            return []
-
-        return json.loads(content)
 
 def main():
     tasks = load_tasks()
