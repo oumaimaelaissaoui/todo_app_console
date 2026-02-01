@@ -8,29 +8,33 @@ def show_menu():
     print("4. Supprimer une tâche")
     print("5. Quitter")
 
+def add_task(tasks):
+    title = input("Enter task title: ")
+    task = {
+        "title": title,
+        "completed": False
+    }
+    tasks.append(task)
+    print("Task added successfully!")
 
-def main():
-    while True:
-        show_menu()
-        choice = input("Choisissez une option : ")
+def delete_task(tasks):
+    if not tasks:
+        print("No tasks to delete.")
+        return
 
-        if choice == "1":
-            print("Fonction add_task à implémenter")
-        elif choice == "2":
-            print("Fonction show_tasks à implémenter")
-        elif choice == "3":
-            print("Fonction complete_task à implémenter")
-        elif choice == "4":
-            print("Fonction delete_task à implémenter")
-        elif choice == "5":
-            print("Au revoir 👋")
-            break
+    for i, task in enumerate(tasks):
+        status = "✔" if task["completed"] else "✖"
+        print(f"{i + 1}. {task['title']} [{status}]")
+
+    try:
+        index = int(input("Enter task number to delete: ")) - 1
+        if 0 <= index < len(tasks):
+            removed = tasks.pop(index)
+            print(f"Task '{removed['title']}' deleted successfully!")
         else:
-            print("Choix invalide ❌")
-
-
-if __name__ == "__main__":
-    main()
+            print("Invalid task number.")
+    except ValueError:
+        print("Please enter a valid number.")
 
 def show_tasks(tasks):
     if not tasks:
